@@ -1,4 +1,11 @@
 version: "3.3"
+
+networks:
+  front-end:
+    driver: bridge
+  back-end:
+    driver: bridge
+
 services:
   api:
     container_name: tb-api
@@ -15,8 +22,8 @@ services:
       - db
     depends_on:
       - db
-    # networks:
-    #   - app_net
+    networks:
+      - back-end
   db:
     container_name: tb-db
     image: tb/db:latest
@@ -35,8 +42,3 @@ services:
     # tty: true
     networks:
       - back-end
-networks:
-  front-end:
-    driver: bridge
-  back-end:
-    driver: bridge

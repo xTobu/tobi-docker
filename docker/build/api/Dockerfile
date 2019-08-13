@@ -7,7 +7,7 @@ RUN go build -o ApiServer -ldflags "-X main.ENV=production"
 FROM debian:9-slim as stage
 WORKDIR /root/
 COPY --from=builder ./root/go/ApiServer ./
-COPY --from=builder ./root/go/config ./config/
+COPY --from=builder ./root/go/configs ./configs/
 
 EXPOSE 8888
 
