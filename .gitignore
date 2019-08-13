@@ -1,0 +1,5 @@
+# services is storing projects
+services/*
+
+# for keep services dir
+!services/.gitkeep
