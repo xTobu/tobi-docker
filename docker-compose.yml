@@ -8,10 +8,10 @@ networks:
 
 services:
   api:
-    container_name: tb-api
-    image: tb/api:latest
+    container_name: tobi-api
+    image: tobi-api:latest
     build:
-      context: ./services/api/
+      context: ./services/tobi-api/
       dockerfile: ../../docker/build/api/Dockerfile
     ports:
       - "8888:8888"
@@ -25,15 +25,15 @@ services:
     networks:
       - back-end
   db:
-    container_name: tb-db
-    image: tb/db:latest
+    container_name: tobi-db
+    image: tobi-db:latest
     build: ./docker/build/db
     ports:
       - "5432:5432"
     volumes:
       - ./docker/build/db/initdb.d:/docker-entrypoint-initdb.d
       - ./docker/build/db/postgresql.conf:/etc/postgresql/postgresql.conf
-      - ./services/db/postgresql/data:/var/lib/postgresql/data
+      - ./services/tobi-db/data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-tobi}
       POSTGRES_USER: ${POSTGRES_USER:-su}
